@@ -144,7 +144,13 @@ elapsedMillis inactivityTimeout;// an inactivity timeout
 // setup runs once, when Teensy boots.
 //
 void setup() {
-  // initialize all hardware
+
+    setup_display();
+    setup_encoder();
+    setup_flipswitch();
+    setup_pushbutton();
+
+    // initialize all hardware
 
   pinMode(6, OUTPUT);
   pinMode(8, INPUT_PULLUP);              // input pullup mode allows connecting 
