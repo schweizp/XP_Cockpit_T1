@@ -12,6 +12,13 @@
 
 #include "usb_api.h"        // for syntax highlighting purposes
 
+// include the different specialized coding parts
+#include "encoder.h"
+#include "pushbutton.h"
+#include "flipswitch.h"
+#include "display.h"
+
+
 #include <Bounce.h>
 #include <Encoder.h>
 #include <LiquidCrystal.h>
