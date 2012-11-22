@@ -26,8 +26,10 @@ FlightSimInteger ADFFrequencyHz;
 FlightSimInteger ADFStdbyFrequencyHz;
 FlightSimInteger TransponderCode;
 
+// declarations
+void update_lcd(long var);
 
-// setup function ist called ones when Teensy boots
+// setup function ist called once when Teensy boots
 void setup_display()
 {
     // initialize lcd hardware
@@ -90,7 +92,7 @@ void loop_display()
 
 }
 
-void update_lcd()
+void update_lcd(long var)
 {
     // COM1
     lcd.setCursor(5, 0);

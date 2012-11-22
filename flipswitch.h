@@ -43,7 +43,7 @@ void loop_flipswitch()
             TransponderMode = 1;
     if (tModeOn.update())
         if (tModeOn.read())
-            TransonderMode = 2;
+            TransponderMode = 2;
     if (tModeAlt.update())
         if (tModeAlt.read())
             TransponderMode = 2;

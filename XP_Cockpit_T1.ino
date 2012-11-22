@@ -53,13 +53,13 @@ void loop()
 
 
   // read the rotary encoder, if it's changed, write to NavFrequencyHz
-  long enc = wheel.read();
-  if (enc != encoder_prev) {
-    NavFrequencyHz = NavFrequencyHz + (enc - encoder_prev);
-    encoder_prev = enc;
-    update_lcd(NavFrequencyHz);
-    inactivityTimeout = 0;   // reset the inactivity timeout
-  }
+  //long enc = wheel.read();
+  //if (enc != encoder_prev) {
+  //  NavFrequencyHz = NavFrequencyHz + (enc - encoder_prev);
+  //  encoder_prev = enc;
+  //  update_lcd(NavFrequencyHz);
+  //  inactivityTimeout = 0;   // reset the inactivity timeout
+  //}
 
 }
 
