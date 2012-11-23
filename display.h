@@ -33,7 +33,7 @@ void update_lcd(long var);
 void setup_display()
 {
     // initialize lcd hardware
-    lcd.begin(40, 4);                   // LCD rows and columns
+    lcd.begin(20, 4);                   // LCD rows and columns
     lcd.noCursor();                     // do not display cursor
 
     // print fixed labels on lcd-display

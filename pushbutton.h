@@ -70,7 +70,7 @@ void setup_pushbutton()
     pinMode(45, INPUT_PULLUP);
 
     pinMode(6, OUTPUT);
-    digitalWrite(5, HIGH);
+    digitalWrite(6, HIGH);
     pinMode(12, OUTPUT);
     digitalWrite(12, LOW);
 

@@ -109,8 +109,80 @@ void loop_encoder()
         else
             COM1FineDown.once();
     }
-
-
+    // read COM2 encoder and send
+    // commands to simulator
+    enc = wheel_3.read();
+    if (enc > com2_enc)
+    {
+        if (com2_big)
+            COM2CoarseUp.once();
+        else
+            COM2FineUp.once();
+    }
+    else if (enc < com1_enc)
+    {
+        if (com1_big)
+            COM2CoarseDown.once();
+        else
+            COM2FineDown.once();
+    }
+    // read NAV1 encoder and send
+    // commands to simulator
+    enc = wheel_2.read();
+    if (enc > nav1_enc)
+    {
+        if (nav1_big)
+            NAV1CoarseUp.once();
+        else
+            NAV1FineUp.once();
+    }
+    else if (enc < nav1_enc)
+    {
+        if (nav1_big)
+            NAV1CoarseDown.once();
+        else
+            NAV1FineDown.once();
+    }
+    // read NAV2 encoder and send
+    // commands to simulator
+    enc = wheel_4.read();
+    if (enc > nav2_enc)
+    {
+        if (nav2_big)
+            NAV2CoarseUp.once();
+        else
+            NAV2FineUp.once();
+    }
+    else if (enc < nav2_enc)
+    {
+        if (nav2_big)
+            NAV2CoarseDown.once();
+        else
+            NAV2FineDown.once();
+    }
+    // read OBS encoder and send
+    // commands to simulator
+    enc = wheel_6.read();
+    if (enc > obs_enc)
+    {
+        if (obs1_sel)
+        {
+            OBS1Up.once();
+            OBSHSIUp.once();
+        }
+        else
+            OBS2Up.once();
+    }
+    else if (enc < nav2_enc)
+    {
+        if (obs1_sel)
+        {
+            OBS1Down.once();
+            OBSHSIDown.once();
+        }
+        else
+            OBS2Down.once();
+    }
 
 }
 

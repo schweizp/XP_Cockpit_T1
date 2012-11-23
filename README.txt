@@ -8,7 +8,7 @@ switches, rotary encoders and a 4x40 LCD display.
 
 Actual state is not meant for general use.
 
-Version 0.01
+Version 0.80
 
 Requirements to compile and use this software:
 
@@ -19,5 +19,15 @@ Requirements to compile and use this software:
 - Input-Output-Panel
 
 
-Working:
-- Nothing yet ;-)
+Implemented and tested:
+
+
+Implemented but not tested yet:
+- pusbuttons (not every function is verified yet)
+- rotary switch
+- LCD
+- encoders
+
+Not working:
+- LCD (hardware problem --> not connected VEE Pin)
+

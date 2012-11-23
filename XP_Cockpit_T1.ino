@@ -1,6 +1,6 @@
 // Cockpit for X-Plane using Teensy++ 2.0 Boards
 //
-// Version 0.01
+// Version 0.80
 // by Philemon Schweizer
 //
 // Teensy Board No.1
@@ -50,16 +50,6 @@ void loop()
     loop_encoder();
     loop_flipswitch();
     loop_pushbutton();
-
-
-  // read the rotary encoder, if it's changed, write to NavFrequencyHz
-  //long enc = wheel.read();
-  //if (enc != encoder_prev) {
-  //  NavFrequencyHz = NavFrequencyHz + (enc - encoder_prev);
-  //  encoder_prev = enc;
-  //  update_lcd(NavFrequencyHz);
-  //  inactivityTimeout = 0;   // reset the inactivity timeout
-  //}
 
 }
 

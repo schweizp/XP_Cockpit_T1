@@ -13,7 +13,11 @@ Bounce        tModeAlt(31, 10);
 Bounce        tModeTest(32, 10);
 
 // X-Plane objects
-FlightSimInteger TransponderMode;
+FlightSimCommand TransponderOFF;
+FlightSimCommand TransponderSTDBY;
+FlightSimCommand TransponderON;
+FlightSimCommand TransponderALT;
+FlightSimCommand TransponderTEST;
 
 // setup function is called once when Teensy boots up
 void setup_flipswitch()
@@ -26,8 +30,11 @@ void setup_flipswitch()
     pinMode(32, INPUT_PULLUP);
 
     // configure the X-Plane variables
-    TransponderMode = XPlaneRef("sim/cockpit2/radios/actuators/transponder_mode");
-
+    TransponderOFF = XPlaneRef("sim/transponder/transponder_off");
+    TransponderSTDBY = XPlaneRef("sim/transponder/transponder_standby");
+    TransponderON = XPlaneRef("sim/transponder/transponder_on");
+    TransponderALT = XPlaneRef("sim/transponder/transponder_alt");
+    TransponderTEST = XPlaneRef("sim/transponder/transponder_test");
 }
 
 // loop function is called repeteadtly as long as Teensy is powered
@@ -36,20 +43,20 @@ void loop_flipswitch()
     // read state of input pins and set corresponding
     // state in X-Pane variable
     if (tModeOff.update())
-        if (tModeOff.read())
-            TransponderMode = 0;
+        if (tModeOff.read() == LOW)
+            TransponderOFF.once();
     if (tModeSby.update())
-        if (tModeSby.read())
-            TransponderMode = 1;
+        if (tModeSby.read() == LOW)
+            TransponderSTDBY.once();
     if (tModeOn.update())
-        if (tModeOn.read())
-            TransponderMode = 2;
+        if (tModeOn.read() == LOW)
+            TransponderON.once();
     if (tModeAlt.update())
-        if (tModeAlt.read())
-            TransponderMode = 2;
+        if (tModeAlt.read() == LOW)
+            TransponderALT.once();
     if (tModeTest.update())
-        if (tModeTest.read())
-            TransponderMode = 3;
+        if (tModeTest.read() == LOW)
+            TransponderTEST.once();
 }
 
 
