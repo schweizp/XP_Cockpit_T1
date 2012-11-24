@@ -5,6 +5,9 @@
 #include "usb_api.h"
 #include <Bounce.h>
 
+//includes
+#include "display.h"
+
 Bounce      shift_1(8, 10);         // COM1 shift big to small increment
 Bounce      act_stdby_1(9, 10);     // COM1 Active / Stdby button
 Bounce      shift_2(36, 10);        // NAV1 shift big to small increment
@@ -47,6 +50,10 @@ boolean nav1_big = true;    // is big or small increment selected
 boolean nav2_big = true;    // is big or small increment selected
 boolean obs1_sel = true;    // is nav1 or nav2 obs selected
 
+// declarations
+void update_lcd(long var);
+
+
 // setup function is called once when Teensy boots up
 void setup_pushbutton()
 {
@@ -66,6 +73,9 @@ void setup_pushbutton()
     pinMode(35, INPUT_PULLUP);
     pinMode(36, INPUT_PULLUP);
     pinMode(37, INPUT_PULLUP);
+    pinMode(40, INPUT_PULLUP);
+    pinMode(41, INPUT_PULLUP);
+    pinMode(43, INPUT_PULLUP);
     pinMode(44, INPUT_PULLUP);
     pinMode(45, INPUT_PULLUP);
 
@@ -80,9 +90,9 @@ void setup_pushbutton()
     NAV1StdbyFlip = XPlaneRef("sim/radios/nav1_standy_flip");
     NAV2StdbyFlip = XPlaneRef("sim/radios/nav2_standy_flip");
     ADFStdbyFlip = XPlaneRef("sim/radios/adf1_standy_flip");
-    ADFHundredsUp = XPlaneRef("sim/radios/stby_adf1_hundreds_up");
-    ADFTensUp = XPlaneRef("sim/radios/stby_adf1_tens_up");
-    ADFOnesUp = XPlaneRef("sim/radios/stby_adf1_ones_up");
+    ADFHundredsUp = XPlaneRef("sim/radios/actv_adf1_hundreds_up");
+    ADFTensUp = XPlaneRef("sim/radios/actv_adf1_tens_up");
+    ADFOnesUp = XPlaneRef("sim/radios/actv_adf1_ones_up");
     TransponderThousandsUp = XPlaneRef("sim/transponder/transponder_thousands_up");
     TransponderHundredsUp = XPlaneRef("sim/transponder/transponder_hundreds_up");
     TransponderTensUp = XPlaneRef("sim/transponder/transponder_tens_up");
@@ -98,19 +108,34 @@ void loop_pushbutton()
     // corresponding booleans acordingly
     if (shift_1.update())
         if (shift_1.fallingEdge())
+        {
             com1_big = !com1_big;
+            update_lcd(0);
+        }
     if (shift_2.update())
         if (shift_2.fallingEdge())
+        {
             nav1_big = !nav1_big;
+            update_lcd(0);
+        }
     if (shift_3.update())
         if (shift_3.fallingEdge())
+        {
             com2_big = !com2_big;
+            update_lcd(0);
+        }
     if (shift_4.update())
         if (shift_4.fallingEdge())
+        {
             nav2_big = !nav2_big;
+            update_lcd(0);
+        }
     if (OBSsel_6.update())
         if (OBSsel_6.fallingEdge())
+        {
             obs1_sel = !obs1_sel;
+            update_lcd(0);
+        }
 
     // gets state of Act/Stdby buttons and
     // sends command to simulator

@@ -26,6 +26,10 @@ FlightSimInteger ADFFrequencyHz;
 FlightSimInteger ADFStdbyFrequencyHz;
 FlightSimInteger TransponderCode;
 
+// variables
+boolean display_init = false;
+boolean display_wait = false;
+
 // declarations
 void update_lcd(long var);
 
@@ -34,7 +38,22 @@ void setup_display()
 {
     // initialize lcd hardware
     lcd.begin(20, 4);                   // LCD rows and columns
+    lcd.clear();                        // clear the LCD
     lcd.noCursor();                     // do not display cursor
+
+    // display startup message
+    lcd.setCursor(3, 0);
+    lcd.print("RADIO   PANEL");
+    delay(1000);
+    lcd.setCursor(8, 1);
+    lcd.print("for");
+    delay(1000);
+    lcd.setCursor(6, 2);
+    lcd.print("X-plane");
+    delay(1000);
+    lcd.setCursor(3, 3);
+    lcd.print("Version  0.97");
+    delay(10000);
 
     // print fixed labels on lcd-display
     lcd.setCursor(0,0);                 // set cursor to x/y position
@@ -53,6 +72,7 @@ void setup_display()
     lcd.print("*");                     // print to lcd
     lcd.setCursor(12,2);                // set cursor to x/y position
     lcd.print("*");                     // print to lcd
+
 
 
     // configure the X-Plane variables
@@ -89,6 +109,55 @@ void setup_display()
 // loop function is repeatedly called as long as Teensy is powered up
 void loop_display()
 {
+    if (FlightSim.isEnabled())                  // X-plane running?
+    {
+        display_wait = false;
+        if (display_init == false)              // only once to prevent flickering!
+        {
+            lcd.clear();                        // clear display
+
+            // print fixed labels on lcd-display
+            lcd.setCursor(0,0);                 // set cursor to x/y position
+            lcd.print("COM1");                  // print to lcd
+            lcd.setCursor(0,1);                 // set cursor to x/y position
+            lcd.print("COM2");                  // print to lcd
+            lcd.setCursor(0,2);                 // set cursor to x/y position
+            lcd.print("NAV1");                  // print to lcd
+            lcd.setCursor(0,3);                 // set cursor to x/y position
+            lcd.print("ADF");                   // print to lcd
+            lcd.setCursor(10,3);                // set cursor to x/y position
+            lcd.print("TRANS");                 // print to lcd
+            lcd.setCursor(12,0);                // set cursor to x/y position
+            lcd.print("*");                     // print to lcd
+            lcd.setCursor(12,1);                // set cursor to x/y position
+            lcd.print("*");                     // print to lcd
+            lcd.setCursor(12,2);                // set cursor to x/y position
+            lcd.print("*");                     // print to lcd
+
+            display_init = true;                // display is initialized
+        }
+
+    }
+    else
+    {
+        display_init = false;
+        if (display_wait == false)          // only once to prevent flickering!
+        {
+            lcd.clear();
+            // display waiting message
+            lcd.setCursor(4, 0);                // set cursor to x/y position
+            lcd.print("Waiting for");                     // print to lcd
+            lcd.setCursor(5, 1);                // set cursor to x/y position
+            lcd.print("X-plane &");                     // print to lcd
+            lcd.setCursor(3, 2);                // set cursor to x/y position
+            lcd.print("Teensy-plugin");                     // print to lcd
+            lcd.setCursor(4, 3);                // set cursor to x/y position
+            lcd.print("to connect");                     // print to lcd
+
+            display_wait = true;
+        }
+
+    }
 
 }
 

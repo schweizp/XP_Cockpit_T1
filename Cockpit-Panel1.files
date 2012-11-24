@@ -9,3 +9,4 @@ display.h
 ../arduino-1.0.1/libraries/Bounce/Bounce.h
 ../arduino-1.0.1/libraries/Encoder/Encoder.h
 ../arduino-1.0.1/libraries/LiquidCrystal/LiquidCrystal.h
+../arduino-1.0.1/hardware/teensy/cores/teensy/elapsedMillis.h

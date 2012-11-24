@@ -1,6 +1,9 @@
 #ifndef ENCODER_H
 #define ENCODER_H
 
+// defines
+#define RESOLUTION 4
+
 // for syntax highlighting purposes
 #include "usb_api.h"
 #include <Encoder.h>
@@ -53,6 +56,13 @@ long nav2_enc = 0;
 long adf_enc = 0;
 long obs_enc = 0;
 
+long enc1 = 0;
+long enc2 = 0;
+long enc3 = 0;
+long enc4 = 0;
+long enc5 = 0;
+long enc6 = 0;
+
 // setup function is called once when Teensy boots up
 void setup_encoder()
 {
@@ -89,81 +99,89 @@ void setup_encoder()
 // loop function is called repeatedly as long as Teensy is powered
 void loop_encoder()
 {
-    // variables
-    long enc = 0;
 
     // read COM1 encoder and send
     // commands to simulator
-    enc = wheel_1.read();
-    if (enc > com1_enc)
+    enc1 = wheel_1.read();
+    if (enc1 > com1_enc + RESOLUTION)
     {
         if (com1_big)
             COM1CoarseUp.once();
         else
             COM1FineUp.once();
+        com1_enc = enc1;
     }
-    else if (enc < com1_enc)
+    else if (enc1 < com1_enc - RESOLUTION)
     {
         if (com1_big)
             COM1CoarseDown.once();
         else
             COM1FineDown.once();
+        com1_enc = enc1;
     }
     // read COM2 encoder and send
     // commands to simulator
-    enc = wheel_3.read();
-    if (enc > com2_enc)
+    enc3 = wheel_3.read();
+    if (enc3 > com2_enc + RESOLUTION)
     {
         if (com2_big)
             COM2CoarseUp.once();
         else
             COM2FineUp.once();
+        com2_enc = enc3;
+
     }
-    else if (enc < com1_enc)
+    else if (enc3 < com2_enc - RESOLUTION)
     {
-        if (com1_big)
+        if (com2_big)
             COM2CoarseDown.once();
         else
             COM2FineDown.once();
+        com2_enc = enc3;
+
     }
     // read NAV1 encoder and send
     // commands to simulator
-    enc = wheel_2.read();
-    if (enc > nav1_enc)
+    enc2 = wheel_2.read();
+    if (enc2 > nav1_enc + RESOLUTION)
     {
         if (nav1_big)
             NAV1CoarseUp.once();
         else
             NAV1FineUp.once();
+        nav1_enc = enc2;
     }
-    else if (enc < nav1_enc)
+    else if (enc2 < nav1_enc - RESOLUTION)
     {
         if (nav1_big)
             NAV1CoarseDown.once();
         else
             NAV1FineDown.once();
+        nav1_enc = enc2;
     }
     // read NAV2 encoder and send
     // commands to simulator
-    enc = wheel_4.read();
-    if (enc > nav2_enc)
+    enc4 = wheel_4.read();
+    if (enc4 > nav2_enc + RESOLUTION)
     {
         if (nav2_big)
             NAV2CoarseUp.once();
         else
             NAV2FineUp.once();
+        nav2_enc = enc4;
     }
-    else if (enc < nav2_enc)
+    else if (enc4 < nav2_enc - RESOLUTION)
     {
         if (nav2_big)
             NAV2CoarseDown.once();
         else
             NAV2FineDown.once();
+        nav2_enc = enc4;
     }
     // read OBS encoder and send
     // commands to simulator
-    enc = wheel_6.read();
-    if (enc > obs_enc)
+    enc6 = wheel_6.read();
+    if (enc6 > obs_enc + RESOLUTION)
     {
         if (obs1_sel)
         {
@@ -172,8 +190,10 @@ void loop_encoder()
         }
         else
             OBS2Up.once();
+        obs_enc = enc6;
+
     }
-    else if (enc < nav2_enc)
+    else if (enc6 < obs_enc - RESOLUTION)
     {
         if (obs1_sel)
         {
@@ -182,6 +202,7 @@ void loop_encoder()
         }
         else
             OBS2Down.once();
+        obs_enc = enc6;
     }
 
 }

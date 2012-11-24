@@ -8,7 +8,7 @@ switches, rotary encoders and a 4x40 LCD display.
 
 Actual state is not meant for general use.
 
-Version 0.80
+Version 0.97
 
 Requirements to compile and use this software:
 
@@ -20,11 +20,11 @@ Requirements to compile and use this software:
 
 
 Implemented and tested:
+- pushbuttons all working
+- rotary switch all working
 
 
 Implemented but not tested yet:
-- pusbuttons (not every function is verified yet)
-- rotary switch
 - LCD
 - encoders
 
