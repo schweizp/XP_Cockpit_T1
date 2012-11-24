@@ -1,6 +1,6 @@
 // Cockpit for X-Plane using Teensy++ 2.0 Boards
 //
-// Version 0.97
+// Version 1.00
 // by Philemon Schweizer
 //
 // Teensy Board No.1
@@ -24,7 +24,6 @@
 #include "flipswitch.h"
 
 
-#include <elapsedMillis.h>
 #include <Bounce.h>
 #include <Encoder.h>
 #include <LiquidCrystal.h>
@@ -45,10 +44,6 @@ void setup()
 // loop runs repetitively, as long as Teensy is powered up
 void loop()
 {
-    // variables
-    elapsedMillis time;
-    unsigned long old_time;
-    unsigned long diff;
 
     // normally the first step in loop() should update from X-Plane
     FlightSim.update();
@@ -60,10 +55,5 @@ void loop()
     loop_flipswitch();
     loop_pushbutton();
 
-    // timing message
-    diff = time - old_time;
-    old_time = time;
-    lcd.setCursor(0,3);
-    lcd.print(diff);
 }
 

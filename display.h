@@ -52,7 +52,7 @@ void setup_display()
     lcd.print("X-plane");
     delay(1000);
     lcd.setCursor(3, 3);
-    lcd.print("Version  0.97");
+    lcd.print("Version  1.00");
     delay(10000);
 
     // print fixed labels on lcd-display
@@ -133,6 +133,8 @@ void loop_display()
             lcd.print("*");                     // print to lcd
             lcd.setCursor(12,2);                // set cursor to x/y position
             lcd.print("*");                     // print to lcd
+
+            update_lcd(0);                       // write values to lcd
 
             display_init = true;                // display is initialized
         }
