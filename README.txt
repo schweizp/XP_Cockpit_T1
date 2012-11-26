@@ -1,12 +1,11 @@
-This is an Arduino sketch in heavy developement.
+This is an Arduino/Teensy.
 
-It will be used to power a radio-panel for the X-plane
+It is used to simulate a radio-panel for the X-plane
 flight-simulator.
 
 The panel is based on the Teensy-boards and a lot of buttons,
-switches, rotary encoders and a 4x40 LCD display.
+switches, rotary encoders and a 4x20 LCD display.
 
-Actual state is not meant for general use.
 
 Version 1.00
 
@@ -16,7 +15,7 @@ Requirements to compile and use this software:
 - Teensyduino Library       http://www.pjrc.com/teensy/teensyduino.html
 - Teensyboard 2.0++         http://www.pjrc.com/store/teensypp.html
 
-- Input-Output-Panel
+- Input-Output-Panel        see file in /Paneldesign/
 
 
 Implemented and tested:
